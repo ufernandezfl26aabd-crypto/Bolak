@@ -1,0 +1,12 @@
+from adivinanza import Bola, Balanza
+import random
+
+bolas = [Bola(1) for _ in range(8)]
+posicion_aleatoria = random.randint(0,9)
+bolas.insert(posicion_aleatoria, Bola(1.1))  # Bola más pesada
+
+balanza = Balanza()
+
+print(balanza.pesar(bolas[:4], bolas[4:9]))  # Compara las primeras 4 bolas con las últimas 4
+
+print(balanza.emaitza(bolas[4]))  # Muestra el resultado de la comparación
