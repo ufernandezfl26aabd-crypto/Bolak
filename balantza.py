@@ -1,12 +1,16 @@
 
-def __init__(self, aldiz = 0):
-        self.aldiz = aldiz
+class Bola:
 
-def pisatu(self, bola1, bola2):
+    def __init__(self, zenbakia, pisua):
+        self.zenbakia = zenbakia
+        self.pisua = pisua
 
-        pisua1 = sum(bola.pisua for bola in bola1)
-        pisua2 = sum(bola.pisua for bola in bola2)
-        self.aldiz += 1
+
+class Balanza:
+
+    def pisatu(self, taldea1, taldea2):
+        pisua1 = sum(b.pisua for b in taldea1)
+        pisua2 = sum(b.pisua for b in taldea2)
 
         if pisua1 > pisua2:
             return 1
@@ -15,9 +19,33 @@ def pisatu(self, bola1, bola2):
         else:
             return 0
 
-def emaitza(self, bola):
 
-        if(bola.pisua > 1):
-            return "Asmatu duzu gehien piesatzen duen bola  " + str(self.aldiz) + " aldiz erabili da"
-        else:
-            return "Ez duzu asmatu"
+# 8 bolak sortu
+bolak = [Bola(i, 10) for i in range(1, 9)]
+
+# 7. bolak pisu handiagoa dauka
+bolak[6].pisua = 11
+
+balantza = Balanza()
+
+# LEHENENGO PISAKETA: 3 vs 3
+emaitza = balantza.pisatu(bolak[:3], bolak[3:6])
+
+if emaitza == 1:
+    susmagarriak = bolak[:3]
+elif emaitza == -1:
+    susmagarriak = bolak[3:6]
+else:
+    susmagarriak = bolak[6:8]
+
+# BIGARREN PISAKETA: 1 vs 1
+emaitza = balantza.pisatu(susmagarriak[:1], susmagarriak[1:2])
+
+if emaitza == 1:
+    aurkituta = susmagarriak[0]
+elif emaitza == -1:
+    aurkituta = susmagarriak[1]
+else:
+    aurkituta = susmagarriak[2]
+
+print("Bola desberdina hau da:", aurkituta.zenbakia)
